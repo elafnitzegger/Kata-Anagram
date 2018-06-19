@@ -16,7 +16,7 @@ namespace WordToAnagram
     {
         static void Main(string[] args)
         {
-            var wordToAnagram = "alexander";
+            var wordToAnagram = "documenting";
 
             var wordList = FileToLines(".\\wordlist.txt").ToWords();
 
