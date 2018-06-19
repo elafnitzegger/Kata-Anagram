@@ -16,18 +16,14 @@ namespace WordToAnagram
     {
         static void Main(string[] args)
         {
-            var wordToAnagram = "southside";
+            var wordToAnagram = "alexander";
 
             var wordList = FileToLines(".\\wordlist.txt").ToWords();
 
             foreach (var firstWord in wordList)
-            {
                 foreach (var secondWord in wordList)
-                {
                     if (wordToAnagram.IsSatisfiedBy(firstWord + secondWord))
                         Display(wordToAnagram + " = " + firstWord + " " + secondWord);
-                }
-            }
         }
 
         private static string[] FileToLines(string path)
@@ -47,21 +43,17 @@ namespace WordToAnagram
         {
             List<string> words = new List<string>();
             foreach (var line in lines)
-            {
                 foreach (var word in line.Split(" ", StringSplitOptions.RemoveEmptyEntries))
-                {
                     words.Add(word);
-                }
-            }
             return words;
         }
 
         public static bool IsSatisfiedBy(this string wordToAnagram, string firstWordPlusSecondWord)
         {
-            return Sorted(wordToAnagram) == Sorted(firstWordPlusSecondWord);
+            return wordToAnagram.Sorted() == firstWordPlusSecondWord.Sorted();
         }
 
-        private static string Sorted(string word)
+        public static string Sorted(this string word)
         {
             return string.Concat(word.OrderBy(c => c));
         }
